@@ -1,0 +1,6 @@
+com/fdrtec/api/repair/tips/controller/ProductController.class
+com/fdrtec/api/repair/tips/domain/model/entity/Product.class
+com/fdrtec/api/repair/tips/RepairTipsApplication.class
+com/fdrtec/api/repair/tips/domain/repository/ProductRepository.class
+com/fdrtec/api/repair/tips/domain/model/dto/ProductDTO.class
+com/fdrtec/api/repair/tips/domain/model/dto/ProductDTO$ProductDTOBuilder.class
