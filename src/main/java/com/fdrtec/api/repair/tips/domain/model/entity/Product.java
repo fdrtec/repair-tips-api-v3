@@ -2,8 +2,6 @@ package com.fdrtec.api.repair.tips.domain.model.entity;
 
 import java.util.UUID;
 
-import javax.annotation.processing.Generated;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
