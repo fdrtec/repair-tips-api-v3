@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fdrtec.api.repair.tips.domain.model.dto.ProductDTO;
 import com.fdrtec.api.repair.tips.domain.model.entity.Product;
 import com.fdrtec.api.repair.tips.domain.service.ProductService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/products")
@@ -33,37 +36,33 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product save(@RequestBody Product product) {
-        return productService.save(product);
+    public ProductDTO save(@RequestBody @Valid ProductDTO productDTO) {
+        return productService.save(productDTO);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete( @PathVariable UUID id ) {
+    public void delete(@PathVariable UUID id) throws ResponseStatusException {
         productService.getById(id)
-        .map(product -> {
-                    productService.delete(product );
-                    return product;                    
-                })                
+                .map(product -> {
+                    productService.delete(product);
+                    return Void.TYPE;
+                })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Cliente não encontrado"));
     }
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update( @PathVariable UUID id, @RequestBody Product product ) {
+    public void update(@PathVariable UUID id, @RequestBody Product product) {
         productService.getById(id)
-              .map(p -> {
-                    product.setId(p.getId()); 
-                    productService.save(product);
+                .map(p -> {
+                    product.setId(p.getId());
+                    productService.update(product);
                     return product;
                 })
-              .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Cliente não encontrado"));
     }
-
-    
-
-
 
 }
