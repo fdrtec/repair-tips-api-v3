@@ -1,8 +1,12 @@
 package com.fdrtec.api.repair.tips.domain.model.entity;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-import com.fdrtec.api.repair.tips.domain.model.dto.ProductDTO;
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,9 +24,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
-public class Product {
+public class Product implements Serializable{
+	
+    private static final long serialVersionUID = 1L;
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;   
     
@@ -34,12 +40,10 @@ public class Product {
 
     // @Embeddable
     // private Object objectEmbutido
-
-    public static ProductDTO toProductDTO(Product product) {
-        return new ProductDTO(
-            product.getId(),
-            product.getProductName(),
-            product.getProductNumber()
-        );              
-    }    
+    
+    
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    @CreationTimestamp
+    private LocalDateTime createDate;
+    
 }
