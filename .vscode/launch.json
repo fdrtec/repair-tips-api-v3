@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-RepairTipsApplication<repair-tips>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.fdrtec.api.repair.tips.RepairTipsApplication",
+            "projectName": "repair-tips",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
