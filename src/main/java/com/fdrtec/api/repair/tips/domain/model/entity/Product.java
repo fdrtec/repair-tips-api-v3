@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -45,5 +46,9 @@ public class Product implements Serializable{
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @CreationTimestamp
     private LocalDateTime createDate;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    @UpdateTimestamp
+    private LocalDateTime updateDate;
     
 }

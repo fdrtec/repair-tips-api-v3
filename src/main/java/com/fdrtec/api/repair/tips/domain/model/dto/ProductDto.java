@@ -31,6 +31,9 @@ public class ProductDto implements Serializable {
     
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     LocalDateTime createDate;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")    
+    private LocalDateTime updateDate;
 }
 
     // @NotBlank
