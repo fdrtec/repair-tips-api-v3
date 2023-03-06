@@ -1,5 +1,6 @@
 package com.fdrtec.api.repair.tips.domain.service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
@@ -15,18 +16,13 @@ import com.fdrtec.api.repair.tips.domain.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
-public class ProductService implements Converter<ProductDto, Product>{    
-    
-
+public class ProductService implements Converter<ProductDto, Product> {
     
     @Autowired
     private ProductRepository productRepository;
     
-    public ProductDto getById(UUID id) {
-        Product product = productRepository.findById(id).get();
-        // .orElseThrow(() -> new NotFoundException("Product not found"));        
-
-        return this.toDto(product, ProductDto.class);
+    public Optional<Product> getById(UUID id) {
+        return productRepository.findById(id);        
     }
 
     @Transactional

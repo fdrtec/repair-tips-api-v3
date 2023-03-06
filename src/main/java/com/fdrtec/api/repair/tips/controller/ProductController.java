@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.fdrtec.api.repair.tips.domain.model.dto.ProductDto;
 import com.fdrtec.api.repair.tips.domain.service.ProductService;
@@ -21,21 +22,22 @@ import jakarta.validation.Valid;
 @RequestMapping("/products")
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+	@Autowired
+	private ProductService productService;
 
-    @GetMapping("{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ProductDto getById(@PathVariable UUID id) {
-        return productService.getById(id);
-        // .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
-    }
+	@GetMapping("{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public ProductDto getById(@PathVariable UUID id) {
+		return productService.getById(id)
+				.map(product -> productService.toDto(product, ProductDto.class))
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+	}
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ProductDto save(@RequestBody @Valid ProductDto productDto) {
-        return productService.save(productDto);
-    }
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public ProductDto save(@RequestBody @Valid ProductDto productDto) {
+		return productService.save(productDto);
+	}
 
 //    @DeleteMapping("{id}")
 //    @ResponseStatus(HttpStatus.NO_CONTENT)

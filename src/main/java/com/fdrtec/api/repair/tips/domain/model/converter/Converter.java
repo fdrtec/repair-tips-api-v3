@@ -1,9 +1,10 @@
 package com.fdrtec.api.repair.tips.domain.model.converter;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public interface Converter<T, S> {
-
+public interface Converter<T,S> {
+	
 	ModelMapper mapper = new ModelMapper();
 
 //	@SuppressWarnings("unchecked")
