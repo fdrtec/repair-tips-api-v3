@@ -45,10 +45,10 @@ public class Product implements Serializable{
     
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @CreationTimestamp
-    private LocalDateTime createDate;
+    private LocalDateTime dateCreate;    
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @UpdateTimestamp
-    private LocalDateTime updateDate;
+    private LocalDateTime dateUpdate;
     
 }

@@ -30,10 +30,10 @@ public class ProductDto implements Serializable {
     String productNumber; 
     
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    LocalDateTime createDate;
+    LocalDateTime dateCreate;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")    
-    private LocalDateTime updateDate;
+    private LocalDateTime dateUpdate;
 }
 
     // @NotBlank
