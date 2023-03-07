@@ -29,7 +29,7 @@ public class ProductController {
 	@ResponseStatus(HttpStatus.OK)
 	public ProductDto getById(@PathVariable UUID id) {
 		return productService.getById(id)
-				.map(product -> productService.toDto(product, ProductDto.class))
+				.map(product -> productService.toDto(product))
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
 	}
 

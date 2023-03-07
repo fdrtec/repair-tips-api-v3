@@ -3,35 +3,40 @@ package com.fdrtec.api.repair.tips.domain.service;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fdrtec.api.repair.tips.domain.model.converter.Converter;
+import com.fdrtec.api.repair.tips.domain.assembler.CrudAssembler;
 import com.fdrtec.api.repair.tips.domain.model.dto.ProductDto;
 import com.fdrtec.api.repair.tips.domain.model.entity.Product;
 import com.fdrtec.api.repair.tips.domain.repository.ProductRepository;
 
-import lombok.RequiredArgsConstructor;
-
 @Service
-public class ProductService implements Converter<ProductDto, Product> {
+public class ProductService extends CrudAssembler<ProductDto, Product> {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
     
     @Autowired
     private ProductRepository productRepository;
     
+    @Override
     public Optional<Product> getById(UUID id) {
         return productRepository.findById(id);        
     }
 
+    
     @Transactional
+    @Override
     public ProductDto save(ProductDto productDto) {
         try {
-            Product product = this.toEntity(productDto, Product.class);
-            return this.toDto(productRepository.save(product), ProductDto.class);            
+            Product product = this.toEntity(productDto);
+            return this.toDto(productRepository.save(product));            
 
         } catch (Exception e) {
+        	LOGGER.error( "ProductService : ", e);        	
             return null;
         }
     }
