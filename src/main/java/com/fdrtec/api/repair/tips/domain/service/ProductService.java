@@ -38,10 +38,10 @@ public class ProductService extends CrudAssembler<ProductDto, Product> {
             return this.toDto(productRepository.save(product));            
 
         } catch (Exception e) {
-        	LOGGER.error( "## ProductService ##: "+ e.getLocalizedMessage()); 
+        	LOGGER.error( "(ProductService.save catch) "+e.getClass()+": "+ e.getLocalizedMessage()); 
             throw new BusinessRuleException(e);            
         }
-    }
+    } 
 
     @Transactional
     public void delete(Product product) {
