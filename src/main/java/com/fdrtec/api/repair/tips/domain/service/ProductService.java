@@ -13,20 +13,22 @@ import com.fdrtec.api.repair.tips.domain.assembler.CrudAssembler;
 import com.fdrtec.api.repair.tips.domain.model.dto.ProductDto;
 import com.fdrtec.api.repair.tips.domain.model.entity.Product;
 import com.fdrtec.api.repair.tips.domain.repository.ProductRepository;
+import com.fdrtec.api.repair.tips.exception.BusinessRuleException;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService extends CrudAssembler<ProductDto, Product> {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
-    
-    @Autowired
-    private ProductRepository productRepository;
+        
+    private final ProductRepository productRepository;
     
     @Override
     public Optional<Product> getById(UUID id) {
         return productRepository.findById(id);        
     }
-
     
     @Transactional
     @Override
@@ -36,8 +38,8 @@ public class ProductService extends CrudAssembler<ProductDto, Product> {
             return this.toDto(productRepository.save(product));            
 
         } catch (Exception e) {
-        	LOGGER.error( "ProductService : ", e);        	
-            return null;
+        	LOGGER.error( "## ProductService ##: "+ e.getLocalizedMessage()); 
+            throw new BusinessRuleException(e);            
         }
     }
 
