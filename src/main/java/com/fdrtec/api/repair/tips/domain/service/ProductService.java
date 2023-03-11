@@ -1,11 +1,13 @@
 package com.fdrtec.api.repair.tips.domain.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,5 +54,10 @@ public class ProductService extends CrudAssembler<ProductDto, Product> {
     public void update(Product product) {
         productRepository.save(product);
     }
+
+	public List<ProductDto> getAll(Example example) {
+		List<Product> products = productRepository.findAll(example);
+		return this.toCollectionDTO(products);
+	}
 
 }
