@@ -1,5 +1,12 @@
+/home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/config/Preparation.java
+/home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/domain/service/ProductService.java
+/home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/domain/model/converter/Converter.java
 /home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/RepairTipsApplication.java
-/home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/domain/model/dto/ProductDTO.java
 /home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/domain/repository/ProductRepository.java
 /home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/domain/model/entity/Product.java
+/home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/controller/ApplicationControllerAdvice.java
+/home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/domain/model/dto/ProductDto.java
+/home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/core/modelMapper/ModelMapperConfig.java
 /home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/controller/ProductController.java
+/home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/domain/assembler/CrudAssembler.java
+/home/fabiano/academia/repair-tips-api-v3/src/main/java/com/fdrtec/api/repair/tips/exception/BusinessRuleException.java

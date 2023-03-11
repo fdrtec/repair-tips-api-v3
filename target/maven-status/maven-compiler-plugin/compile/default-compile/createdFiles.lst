@@ -1,6 +1,13 @@
-com/fdrtec/api/repair/tips/controller/ProductController.class
 com/fdrtec/api/repair/tips/domain/model/entity/Product.class
+com/fdrtec/api/repair/tips/exception/BusinessRuleException.class
+com/fdrtec/api/repair/tips/domain/assembler/CrudAssembler.class
+com/fdrtec/api/repair/tips/core/modelMapper/ModelMapperConfig.class
+com/fdrtec/api/repair/tips/controller/ProductController.class
 com/fdrtec/api/repair/tips/RepairTipsApplication.class
 com/fdrtec/api/repair/tips/domain/repository/ProductRepository.class
-com/fdrtec/api/repair/tips/domain/model/dto/ProductDTO.class
-com/fdrtec/api/repair/tips/domain/model/dto/ProductDTO$ProductDTOBuilder.class
+com/fdrtec/api/repair/tips/domain/model/converter/Converter.class
+com/fdrtec/api/repair/tips/controller/ApplicationControllerAdvice.class
+com/fdrtec/api/repair/tips/domain/service/ProductService.class
+com/fdrtec/api/repair/tips/config/Preparation.class
+com/fdrtec/api/repair/tips/domain/model/dto/ProductDto.class
+com/fdrtec/api/repair/tips/domain/model/entity/Product$ProductBuilder.class

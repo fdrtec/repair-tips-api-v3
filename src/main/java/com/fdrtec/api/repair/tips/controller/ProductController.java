@@ -1,5 +1,6 @@
 package com.fdrtec.api.repair.tips.controller;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.fdrtec.api.repair.tips.domain.model.dto.ProductDto;
+import com.fdrtec.api.repair.tips.domain.model.entity.Product;
 import com.fdrtec.api.repair.tips.domain.service.ProductService;
 
 import jakarta.validation.Valid;
@@ -28,9 +30,17 @@ public class ProductController {
 	@GetMapping("{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public ProductDto getById(@PathVariable UUID id) {
-		return productService.getById(id)
-				.map(product -> productService.toDto(product))
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+//		return productService.getById(id)
+//				.map(product -> productService.toDto(product))
+//				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+
+		Optional<Product> product = productService.getById(id);
+		
+		if (product.isPresent()) {
+			return productService.toDto(product.get());
+		}
+		
+		throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Product not found");
 	}
 
 	@PostMapping
