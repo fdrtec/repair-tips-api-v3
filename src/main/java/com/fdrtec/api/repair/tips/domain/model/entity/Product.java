@@ -35,6 +35,9 @@ public class Product implements Serializable{
     
     private String productName;
     private String productNumber;
+    private Type type;
+    private Category category;
+    
 
     // @Enumerated(EnumType.STRING)
     // private Enum exemploEnum;

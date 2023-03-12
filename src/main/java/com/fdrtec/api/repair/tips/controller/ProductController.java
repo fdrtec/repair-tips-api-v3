@@ -34,21 +34,19 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+	
+	@GetMapping
+	public List<ProductDto> getAll(Product filter) {
+		ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withStringMatcher(StringMatcher.CONTAINING);
+		Example<Product> example = Example.of(filter, matcher);
+		return productService.getAll(example);
+	}
 
 	@GetMapping("{id}")
-	@ResponseStatus(HttpStatus.OK)
 	public ProductDto getById(@PathVariable UUID id) {
-//		return productService.getById(id)
-//				.map(product -> productService.toDto(product))
-//				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
-
-		Optional<Product> product = productService.getById(id);
-
-		if (product.isPresent()) {
-			return productService.toDto(product.get());
-		}
-
-		throw new ResponseStatusException(HttpStatus.NOT_FOUND, PRODUCT_NOT_FOUND);
+		return productService.getById(id)
+				.map(product -> productService.toDto(product))
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, PRODUCT_NOT_FOUND));
 	}
 
 	@PostMapping
@@ -68,22 +66,12 @@ public class ProductController {
 
 	@PutMapping("{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void update(@PathVariable UUID id, @RequestBody Product product) {
+	public void update(@PathVariable UUID id, @RequestBody ProductDto productDto) {
 		productService.getById(id).map(p -> {
-			product.setId(p.getId());
-			productService.update(product);
-			return product;
+			productDto.setId(p.getId());
+			productService.update(productDto);
+			return Void.TYPE;
 		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, PRODUCT_NOT_FOUND));
-	}
-
-	@GetMapping
-	@ResponseStatus(HttpStatus.OK)
-	public List<ProductDto> getAll(Product filter) {
-		ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withStringMatcher(StringMatcher.CONTAINING);
-		Example example = Example.of(filter, matcher);
-
-		return productService.getAll(example);
-
-	}
+	}	
 
 }

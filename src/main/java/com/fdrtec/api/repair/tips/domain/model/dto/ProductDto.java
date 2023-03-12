@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fdrtec.api.repair.tips.domain.model.entity.Category;
+import com.fdrtec.api.repair.tips.domain.model.entity.Type;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -33,7 +35,11 @@ public class ProductDto implements Serializable {
     LocalDateTime dateCreate;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")    
-    private LocalDateTime dateUpdate;
+    LocalDateTime dateUpdate;
+    
+    TypeDto type;
+    
+    CategoryDto category;
 }
 
     // @NotBlank
